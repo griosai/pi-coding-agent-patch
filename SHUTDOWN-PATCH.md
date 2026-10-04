@@ -26,7 +26,32 @@ The reproducible builder and behavioral regression tests are maintained in
 `griosai/grios-harness`: `scripts/build-patched-pi-package.mjs`,
 `scripts/pi-shutdown-patch.mjs`, `test/build-patched-pi-package.test.ts`, and
 `test/pi-shutdown-patch.test.ts`. Both source archives and member bodies are
-integrity-pinned; drift fails the build.
+integrity-pinned; drift fails the build. The builder and tests that match this
+archive are at grios-harness commit
+`56ad8d96b54a9b64f637f27fda78d58fe5c6ee89` (`scripts/pi-shutdown-patch.mjs`
+member sha256 values equal `shutdownPatch.members` in the provenance file).
+The archive was not rebuilt during the 2026-10-04 salvage review; its hashes
+were checked against the provenance file and the consumer lock only.
+
+## Known issue: quit and signal shutdown
+
+The rethrow also applies to `reason: "quit"`. Pi's interactive mode calls
+`runtimeHost.dispose()` from `void this.shutdown(...)`, so a failing extension
+shutdown handler becomes an uncaught exception, and `uncaughtCrash` exits with
+code 1 at once because `isShuttingDown` is already set:
+
+- SIGTERM/SIGHUP (`shutdown({ fromSignal: true })`): dispose runs before
+  `ui.stop()`, so the process exits 1 with the terminal still in raw mode and
+  `session.dispose()` skipped.
+- Ctrl+D, double Ctrl+C, `/quit`: the TUI has already stopped, but the process
+  exits 1 and `session.dispose()` is skipped.
+
+grios.1 swallowed the failure and both paths exited 0 after full cleanup. The
+harness test `test/pi-shutdown-lifecycle.test.ts` expects `dispose()` to
+reject, so the fix is a design choice: catch the rejection in the interactive
+quit and signal callers (restore the terminal, then exit nonzero), or stop
+rethrowing for `quit`. Either change needs a rebuilt archive with a new version
+and a new consumer pin.
 
 Use the raw GitHub URL at the full immutable commit containing the archive.
 
