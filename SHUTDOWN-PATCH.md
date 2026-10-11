@@ -22,14 +22,11 @@ source maps, remain byte-identical; the missing upstream license is added.
 `build-provenance-grios.2.json` records source pins and each member's hashes.
 No upstream lifecycle script ran during construction.
 
-The reproducible builder and behavioral regression tests are maintained in
-`griosai/grios-harness`: `scripts/build-patched-pi-package.mjs`,
-`scripts/pi-shutdown-patch.mjs`, `test/build-patched-pi-package.test.ts`, and
-`test/pi-shutdown-patch.test.ts`. Both source archives and member bodies are
-integrity-pinned; drift fails the build. The builder and tests that match this
-archive are at grios-harness commit
-`56ad8d96b54a9b64f637f27fda78d58fe5c6ee89` (`scripts/pi-shutdown-patch.mjs`
-member sha256 values equal `shutdownPatch.members` in the provenance file).
+The reproducible builder and behavioral regression tests are maintained in the
+consuming application's repository, which pins the builder and tests that match
+this archive by commit. Both source archives and member bodies are
+integrity-pinned; drift fails the build. The patch script's member sha256
+values equal `shutdownPatch.members` in the provenance file.
 The archive was not rebuilt during the 2026-10-04 salvage review; its hashes
 were checked against the provenance file and the consumer lock only.
 
@@ -47,7 +44,7 @@ code 1 at once because `isShuttingDown` is already set:
   exits 1 and `session.dispose()` is skipped.
 
 grios.1 swallowed the failure and both paths exited 0 after full cleanup. The
-harness test `test/pi-shutdown-lifecycle.test.ts` expects `dispose()` to
+consumer's shutdown lifecycle test expects `dispose()` to
 reject, so the fix is a design choice: catch the rejection in the interactive
 quit and signal callers (restore the terminal, then exit nonzero), or stop
 rethrowing for `quit`. Either change needs a rebuilt archive with a new version
