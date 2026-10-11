@@ -1,7 +1,12 @@
 # Pi Coding Agent Security Patch
 
-STATUS: REVIEWED_DEPENDENCY_ARCHIVE
-SUMMARY: An unofficial, metadata-only derivative of @earendil-works/pi-coding-agent 1.0.0 fixing its shrinkwrapped brace-expansion dependency. All upstream runtime files and assets are preserved byte-for-byte.
+STATUS: REVIEWED_DEPENDENCY_ARCHIVE (grios.1); LOCAL_CANDIDATE (grios.3, supersedes grios.2)
+SUMMARY: Unofficial derivatives of @earendil-works/pi-coding-agent 1.0.0. grios.1 is metadata-only (shrinkwrapped brace-expansion fix; all upstream runtime files byte-for-byte). grios.2 and grios.3 keep that fix and change runtime members for session_shutdown failure handling; see SHUTDOWN-PATCH.md for their behavior, checksums and residuals.
+
+The sections below describe grios.1. The grios.3 archive
+(`griosai-pi-coding-agent-1.0.0-grios.3.tgz`, provenance in
+`build-provenance-grios.3.json`) and the superseded grios.2 archive are
+documented in `SHUTDOWN-PATCH.md`.
 
 The archive identifies itself as `@griosai/pi-coding-agent@1.0.0-grios.1`.
 It changes the package identity in `package.json` and `npm-shrinkwrap.json`,
