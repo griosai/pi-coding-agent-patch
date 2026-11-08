@@ -1,7 +1,13 @@
 # Pi Coding Agent Security Patch
 
-STATUS: REVIEWED_DEPENDENCY_ARCHIVE (grios.1); LOCAL_CANDIDATE (grios.3, supersedes grios.2); RELEASE_CANDIDATE (1.3.0-grios.1, 1.5.0-grios.1)
-SUMMARY: Unofficial derivatives of @earendil-works/pi-coding-agent 1.0.0, 1.3.0 and 1.5.0. grios.1 is metadata-only (shrinkwrapped brace-expansion fix; all upstream runtime files byte-for-byte). grios.2 and grios.3 keep that fix and change runtime members for session_shutdown failure handling; see SHUTDOWN-PATCH.md for their behavior, checksums and residuals.
+STATUS: CONSOLIDATED_SOURCE_CANDIDATE; CONSUMER_QUALIFICATION_PENDING
+SUMMARY: Preserved unofficial Pi derivatives for 1.0.0, 1.0.4, 1.3.0 and 1.5.0. Each archive retains its original bytes, identity and provenance. See [the artifact catalog](ARTIFACT-CATALOG.md) before choosing a version: the 1.0.0-grios.4 dependency repair does not include the grios.3 shutdown fix. Source consolidation does not install or qualify a consumer runtime.
+
+The sections below retain historical archive notes. Their prior review and test
+statements describe their original preparation, not a fresh combined release
+gate. The 1.0.4 variants have separate [identity](README-1.0.4.md) and
+[shutdown](README-1.0.4-grios.2.md) notes. The uniquely named Undici repair has
+[its own provenance and residuals](README-1.0.0-grios.4.md).
 
 The sections below describe grios.1. The grios.3 archive
 (`griosai-pi-coding-agent-1.0.0-grios.3.tgz`, provenance in
@@ -96,3 +102,13 @@ Original package: https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/p
 
 License source: https://raw.githubusercontent.com/earendil-works/pi/f9a26365568127461c47a07a37dcb42c140a3ac5/LICENSE
 (SHA256 0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48)
+
+## 1.5.0-grios.2
+
+`griosai-pi-coding-agent-1.5.0-grios.2.tgz` preserves the preceding shutdown
+repair and adds an optional host callback at idle editor submission in the
+interactive module and CLI bundle. Its declaration is updated too. The callback
+receives the captured session and original prompt closure. Exact member hashes
+and the original preparation contract are recorded in
+`build-provenance-1.5.0-grios.2.json`. This separate archive is preserved as a
+consumer candidate; its presence does not establish installed acceptance.
