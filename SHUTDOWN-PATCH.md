@@ -140,3 +140,7 @@ SRI: sha512-LDqye+u85xVLZscf6mGrRYZ1DHaA2M1d2EPlgdqfPR2JWzuc6w9kfeuKfk6njxMXuYCm
 
 The original grios.1 artifact and its provenance remain unchanged.
 None of the derivatives has been published to the npm registry.
+
+Historical inspection: the 2026-10-04 salvage review checked the grios.2
+archive hashes against its provenance and consumer lock without rebuilding it.
+That inspection is separate from the later grios.3 behavior evidence above.
