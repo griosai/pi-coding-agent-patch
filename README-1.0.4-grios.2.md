@@ -8,6 +8,8 @@ failures cannot interrupt the remaining handlers. Non-shutdown dispatch is
 unchanged. The same existing transformation covers the SDK extension runner and
 its bundled CLI counterpart; no Grios host wrapper is required.
 
+Known issue: like 1.0.0-grios.2, a throwing shutdown handler rejects `runtimeHost.dispose()` before session disposal, and signal shutdown awaits it without catching the rejection. This variant does not include the 1.0.0-grios.3 interactive cleanup fix; do not treat it as the complete shutdown repair (see SHUTDOWN-PATCH.md).
+
 Of 1,248 original upstream members, 1,245 preserve their original bytes and headers.
 Only package identity and the two pinned runtime members change; the pinned MIT
 LICENSE is added. Modified runtime members omit stale sourceMappingURL references.

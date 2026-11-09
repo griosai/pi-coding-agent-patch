@@ -14,7 +14,7 @@ package identity and archive members.
 | 1.0.0-grios.3 | Later interactive shutdown cleanup repair, with documented residual races | build-provenance-grios.3.json |
 | 1.0.0-grios.4 | Undici metadata repair derived from .1; excludes the .2/.3 runtime changes | build-provenance-1.0.0-grios.4.json |
 | 1.0.4-grios.1 | Separate upstream1.0.4 identity and license archive | build-provenance-1.0.4.json |
-| 1.0.4-grios.2 | SDK and bundled CLI shutdown dispatch failure propagation | build-provenance-1.0.4-grios.2.json |
+| 1.0.4-grios.2 | SDK and bundled CLI shutdown dispatch failure propagation; same quit/signal caveat as .2, no .3 interactive cleanup fix | build-provenance-1.0.4-grios.2.json |
 | 1.3.0-grios.1 | Reapplication of the .3 shutdown repair to upstream1.3 | build-provenance-1.3.0-grios.1.json |
 | 1.5.0-grios.1 | Reapplication of the shutdown repair to upstream1.5 | build-provenance-1.5.0-grios.1.json |
 | 1.5.0-grios.2 | Preceding shutdown repair plus optional idle editor dispatch callback | build-provenance-1.5.0-grios.2.json |
