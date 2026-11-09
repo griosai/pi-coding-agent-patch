@@ -1,7 +1,18 @@
 # Pi Coding Agent Security Patch
 
-STATUS: REVIEWED_DEPENDENCY_ARCHIVE
-SUMMARY: An unofficial, metadata-only derivative of @earendil-works/pi-coding-agent 1.0.0 fixing its shrinkwrapped brace-expansion dependency. All upstream runtime files and assets are preserved byte-for-byte.
+STATUS: CONSOLIDATED_SOURCE_CANDIDATE; CONSUMER_QUALIFICATION_PENDING
+SUMMARY: Preserved unofficial Pi derivatives for 1.0.0, 1.0.4, 1.3.0 and 1.5.0. Each archive retains its original bytes, identity and provenance. See [the artifact catalog](ARTIFACT-CATALOG.md) before choosing a version: the 1.0.0-grios.4 dependency repair does not include the grios.3 shutdown fix. Source consolidation does not install or qualify a consumer runtime.
+
+The sections below retain historical archive notes. Their prior review and test
+statements describe their original preparation, not a fresh combined release
+gate. The 1.0.4 variants have separate [identity](README-1.0.4.md) and
+[shutdown](README-1.0.4-grios.2.md) notes. The uniquely named Undici repair has
+[its own provenance and residuals](README-1.0.0-grios.4.md).
+
+The sections below describe grios.1. The grios.3 archive
+(`griosai-pi-coding-agent-1.0.0-grios.3.tgz`, provenance in
+`build-provenance-grios.3.json`) and the superseded grios.2 archive are
+documented in `SHUTDOWN-PATCH.md`.
 
 The archive identifies itself as `@griosai/pi-coding-agent@1.0.0-grios.1`.
 It changes the package identity in `package.json` and `npm-shrinkwrap.json`,
@@ -32,3 +43,72 @@ License source: https://raw.githubusercontent.com/earendil-works/pi/a13d35a742c6
 
 This repository distributes only the dependency patch and provenance. It does
 not contain or publish the Grios application.
+
+## 1.3.0-grios.1
+
+`griosai-pi-coding-agent-1.3.0-grios.1.tgz` identifies itself as
+`@griosai/pi-coding-agent@1.3.0-grios.1`. It is built from the official
+`@earendil-works/pi-coding-agent@1.3.0` archive. It changes the package
+identity in `package.json` and re-applies the grios.3 session_shutdown fix to
+three runtime members (`dist/core/extensions/runner.js`,
+`dist/bundle/chunks/chunk-66G7ITPS.js`,
+`dist/modes/interactive/interactive-mode.js`; see SHUTDOWN-PATCH.md for the
+behavior). Upstream 1.3.0 already resolves `brace-expansion` 5.0.12, so no
+dependency change is needed. 1,272 of 1,276 original members are unchanged; the modified members
+omit stale sourceMappingURL references. The original upstream MIT license is
+included. No upstream lifecycle script was run while building the archive.
+`build-provenance-1.3.0-grios.1.json` records each member's source and resulting
+hash and the official source archive.
+
+Pin the raw GitHub URL at the full immutable commit containing the archive,
+never a branch URL. Preserve these checksums in the consumer lock:
+
+```text
+SHA256: 47f6baf77d5890287fa313d004261b01a2847f1c9de74de2b7ffd1a79cb8631b
+SRI: sha512-36FMhJfmOwDlM9K9JBNCxg3GbRBnIWYjKQHoweE/k116N03sIX2ru86tRVgKMmis/o5/YkvPZ9rEI7gWHRGKlg==
+```
+
+Original package: https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-1.3.0.tgz
+
+License source: https://raw.githubusercontent.com/earendil-works/pi/71023aec1546d6d677a65669c5665c0927ce0dd0/LICENSE
+(SHA256 0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48)
+
+## 1.5.0-grios.1
+
+`griosai-pi-coding-agent-1.5.0-grios.1.tgz` identifies itself as
+`@griosai/pi-coding-agent@1.5.0-grios.1`. It is built from the official
+`@earendil-works/pi-coding-agent@1.5.0` archive (source commit
+`f9a26365568127461c47a07a37dcb42c140a3ac5`, bound by the registry's SLSA
+provenance). It changes the package identity in `package.json` and re-applies
+the same session_shutdown fix, unchanged, to three runtime members
+(`dist/core/extensions/runner.js`, `dist/bundle/chunks/chunk-44DLKSKE.js`,
+`dist/modes/interactive/interactive-mode.js`; see SHUTDOWN-PATCH.md). Upstream
+1.5.0 still resolves `brace-expansion` 5.0.12. 1,282 of 1,286 original members
+are unchanged; the modified members omit stale sourceMappingURL references.
+The original upstream MIT license is included. No upstream lifecycle script was
+run while building the archive, and rebuilding reproduces the same bytes.
+`build-provenance-1.5.0-grios.1.json` records each member's source and
+resulting hash and the official source archive.
+
+Pin the raw GitHub URL at the full immutable commit containing the archive,
+never a branch URL. Preserve these checksums in the consumer lock:
+
+```text
+SHA256: cd932f41ea83d105ffb85ed6be02777b3453cf68f9e8ca870ec383bd38225c86
+SRI: sha512-lKhDs7h8X0WhT17KZpYTodVBTJri/c7tMtVkIWEFalkm8lCN9al5164eOaje9PLozFDuWQlPMGPBRRGdAxKGnA==
+```
+
+Original package: https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-1.5.0.tgz
+
+License source: https://raw.githubusercontent.com/earendil-works/pi/f9a26365568127461c47a07a37dcb42c140a3ac5/LICENSE
+(SHA256 0457f5bcec3b3b211605dfb5d1a49042fd638f3686a410fe099c24a25af13c48)
+
+## 1.5.0-grios.2
+
+`griosai-pi-coding-agent-1.5.0-grios.2.tgz` preserves the preceding shutdown
+repair and adds an optional host callback at idle editor submission in the
+interactive module and CLI bundle. Its declaration is updated too. The callback
+receives the captured session and original prompt closure. Exact member hashes
+and the original preparation contract are recorded in
+`build-provenance-1.5.0-grios.2.json`. This separate archive is preserved as a
+consumer candidate; its presence does not establish installed acceptance.
