@@ -140,3 +140,40 @@ SRI: sha512-LDqye+u85xVLZscf6mGrRYZ1DHaA2M1d2EPlgdqfPR2JWzuc6w9kfeuKfk6njxMXuYCm
 
 The original grios.1 artifact and its provenance remain unchanged.
 None of the derivatives has been published to the npm registry.
+
+
+## 1.5.2 local candidate: credential settlement repair
+
+Pi 1.5.2 adds an awaited credential-write settlement to canonical
+`AgentSessionRuntime.dispose()`. Propagating a shutdown handler failure formerly
+skipped that wait, allowing interactive fallback to exit while a refreshed
+single-use OAuth token was still being saved.
+
+The candidate patches that canonical method and its bundled counterpart. It
+captures any preceding abort, shutdown-event, UI-reset or session-disposal
+failure, awaits the existing `services.modelRuntime.settleCredentialWrites()`
+once, and then rethrows the first original failure. A settlement-only failure
+propagates normally. It adds no credential access, writer or store and retries
+no shutdown handler or teardown step. The existing interactive fallback still
+runs only teardown steps the runtime never started, after settlement and before
+exit 1; successful quit and signal exits await settlement before exit 0.
+
+The runtime module and its stale source-map reference are the additional
+modified member/hunks. The same method changes within the already-modified
+`dist/bundle/chunks/chunk-VEJDBY3O.js`; all original maps remain unchanged as
+provenance. Six of 1,324 original members change, including package identity;
+1,318 member bodies and every original mode are preserved. The original MIT
+license is added. `build-provenance-1.5.2-grios.1.json` inventories every hash.
+The consumer's `docs/pi-fork-delta.md` accounts for all original hunk positions.
+
+Authored synthetic module/bundle fixtures exercise both quit and signal paths,
+including deferred settlement, preceding failures at each teardown boundary,
+settlement failures, primitive thrown values, and at-most-once cleanup. Sixteen
+failure-path regressions failed before this repair; no fetched source was
+executed. Two builds from the pinned official archive produce identical bytes
+and provenance. Runtime 1.5.2 compatibility, live credential storage, startup
+CPU, independent final review and publication remain unqualified or held.
+
+SHA256: `0eba02a5a7b57cdbaea083e9b8ec903eb2eab8e99e8e03d248842b27cc03d0b9`
+
+SRI: `sha512-N7hYErSRC2/wVNhAuJmDGFSIc2OYik6kgq23w79dYyVugTUGSVwAmtAIFi3UsmN6z6GYVEWY3InLXdRPyFaLTg==`

@@ -100,10 +100,10 @@ License source: https://raw.githubusercontent.com/earendil-works/pi/f9a263655681
 
 ## 1.5.2-grios.1 (local candidate)
 
-SUMMARY: Re-applies the same shutdown and idle-editor dispatch changes to the official Pi 1.5.2 archive; no upstream lifecycle scripts execute. The derivative remains unpublished until review and an authorized branch push.
+SUMMARY: Re-applies shutdown and idle-editor dispatch changes to the official Pi 1.5.2 archive and preserves canonical credential settlement after a preceding disposal failure; no upstream lifecycle scripts execute. The derivative remains unpublished until review and an authorized branch push.
 
 Source commit: `b4afdddf44e059c67ccf5097e5317d913521b470` (registry provenance-bound).
-Artifact SHA256: `32a0a10a9d37f2c29d434ad0e59063c25f09642f4c8271fd3785783f1643e45d`.
-SRI: `sha512-cG2flq9eJhhPbi/vTi1/BD5uYZU52U4SXcVfTu7NLuDy/4djNa9t7FfXagyjI7SVAaFDxBvGAHvFkFNBdi7/iQ==`.
+Artifact SHA256: `0eba02a5a7b57cdbaea083e9b8ec903eb2eab8e99e8e03d248842b27cc03d0b9`.
+SRI: `sha512-N7hYErSRC2/wVNhAuJmDGFSIc2OYik6kgq23w79dYyVugTUGSVwAmtAIFi3UsmN6z6GYVEWY3InLXdRPyFaLTg==`.
 
-The five changed upstream members are package identity metadata, extension runner, the matching CLI bundle chunk, interactive mode, and its editor callback declaration. The original MIT license is added. The other 1,319 upstream members remain byte-for-byte, including original source maps; modified members omit stale sourceMappingURL references. brace-expansion 5.0.12 is already upstream and retained unchanged. `build-provenance-1.5.2-grios.1.json` records every member hash and the official source archive. Two independent builds produced identical bytes. The consumer's `docs/pi-fork-delta.md` documents every original patch hunk and upgrade checks.
+The six changed upstream members are package identity metadata, canonical agent-session runtime disposal, extension runner, the matching CLI bundle chunk, interactive mode, and its editor callback declaration. The original MIT license is added. The other 1,318 upstream members remain byte-for-byte, including original source maps; modified members omit stale sourceMappingURL references. The upstream manifest pins brace-expansion 5.0.12 and is retained unchanged; this archive has no npm-shrinkwrap.json, and the consumer lock records the resolution. `build-provenance-1.5.2-grios.1.json` records every member hash and the official source archive. Two independent builds produced identical bytes. The consumer's `docs/pi-fork-delta.md` documents every original patch hunk and upgrade checks.

@@ -27,6 +27,13 @@
   },
   "shutdownPatch": {
     "members": {
+      "package/dist/core/agent-session-runtime.js": {
+        "sha256": "44beede45451cef172d7137077e7e84867b9aaa9f20575143fb9a93fcc00261a",
+        "format": "module",
+        "edits": [
+          "credentialSettlement"
+        ]
+      },
       "package/dist/core/extensions/runner.js": {
         "sha256": "dc7fc776198ec315feecbc8fd5d471453271a3dbf4b1a6a41df342253759a191",
         "format": "module",
@@ -40,7 +47,8 @@
         "edits": [
           "dispatch",
           "interactive",
-          "editor"
+          "editor",
+          "credentialSettlement"
         ]
       },
       "package/dist/modes/interactive/interactive-mode.js": {
@@ -59,21 +67,22 @@
         ]
       }
     },
-    "behavior": "Complete shutdown handlers, then rethrow the first original failure before runtime replacement. Interactive quit and signal shutdown catch that failure, run once only the teardown steps the runtime never started for the current session, restore the terminal, report it and exit 1.",
+    "behavior": "Complete shutdown handlers, then rethrow the first original failure before runtime replacement. Interactive quit and signal shutdown catch that failure, run once only the teardown steps the runtime never started for the current session, restore the terminal, report it and exit 1. Canonical runtime disposal awaits its existing credential writer even after preceding failure, preserving the first failure.",
     "sourceMaps": "Modified members omit sourceMappingURL; original map members remain unchanged for provenance.",
     "editorDispatch": "An optional host callback receives the captured session and original prompt closure only at the idle editor submit site in the module and CLI bundle."
   },
   "artifact": {
     "filename": "griosai-pi-coding-agent-1.5.2-grios.1.tgz",
-    "sha256": "32a0a10a9d37f2c29d434ad0e59063c25f09642f4c8271fd3785783f1643e45d",
-    "integrity": "sha512-cG2flq9eJhhPbi/vTi1/BD5uYZU52U4SXcVfTu7NLuDy/4djNa9t7FfXagyjI7SVAaFDxBvGAHvFkFNBdi7/iQ==",
+    "sha256": "0eba02a5a7b57cdbaea083e9b8ec903eb2eab8e99e8e03d248842b27cc03d0b9",
+    "integrity": "sha512-N7hYErSRC2/wVNhAuJmDGFSIc2OYik6kgq23w79dYyVugTUGSVwAmtAIFi3UsmN6z6GYVEWY3InLXdRPyFaLTg==",
     "fileCount": 1325,
-    "unpackedSize": 24407138
+    "unpackedSize": 24407702
   },
   "preservation": {
-    "unchangedFiles": 1319,
+    "unchangedFiles": 1318,
     "changedFiles": [
       "package/package.json",
+      "package/dist/core/agent-session-runtime.js",
       "package/dist/core/extensions/runner.js",
       "package/dist/bundle/chunks/chunk-VEJDBY3O.js",
       "package/dist/modes/interactive/interactive-mode.js",
@@ -120,8 +129,8 @@
         "path": "package/dist/core/agent-session-runtime.js",
         "mode": 420,
         "sourceSha256": "44beede45451cef172d7137077e7e84867b9aaa9f20575143fb9a93fcc00261a",
-        "artifactSha256": "44beede45451cef172d7137077e7e84867b9aaa9f20575143fb9a93fcc00261a",
-        "changed": false
+        "artifactSha256": "5b4ffc881993918bb5eac6bd07a96fae63c2e111701842e8cc93960214713145",
+        "changed": true
       },
       {
         "path": "package/dist/core/agent-session-services.js",
@@ -603,7 +612,7 @@
         "path": "package/dist/bundle/chunks/chunk-VEJDBY3O.js",
         "mode": 420,
         "sourceSha256": "effbbd5d6247983dc11c7ae5796eb24bda88f9ebf78c707d3f92ca73cbb8b51e",
-        "artifactSha256": "072b948ef0d7ff2ea6f5a2068471e3fc09f09bdfa4bf5bee72b3a4174f994be2",
+        "artifactSha256": "be6428ac95ec83533f29e89fa9749e8a24d5e4880201597afaa229ae96ea773f",
         "changed": true
       },
       {
